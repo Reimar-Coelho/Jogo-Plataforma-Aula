@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
     }
     void Update()
     {
@@ -20,19 +21,15 @@ public class Player : MonoBehaviour
         Debug.Log(horizontal);
         this.rb.velocity = new Vector2(horizontal * 8f, rb.velocity.y);
         animator.SetFloat("speed", Mathf.Abs(horizontal));
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            this.rb.AddForce(Vector2.up * 5f, ForceMode2D.Impulse);
+        }
+
         Flip();
 
-        /*
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Debug.Log("Espaço");
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("clicou");
-
-        }
-        */
+        
     }
     private void Flip()
     {
